@@ -11,6 +11,7 @@ import { JsonLd } from "@/components/json-ld";
 import { PageBackground } from "@/components/page-background";
 import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -118,6 +119,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const rybbitSiteId = process.env.NEXT_PUBLIC_RYBBIT_SITE_ID;
+  const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST || "https://app.rybbit.io";
+  const rybbitScriptSrc = `${rybbitHost}/api/script.js`;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -127,6 +132,15 @@ export default function RootLayout({
           dingTalkFont.variable
         )}
       >
+        {/* Rybbit Tracking Script */}
+        {rybbitSiteId && (
+          <Script
+            src={rybbitScriptSrc}
+            data-site-id={rybbitSiteId}
+            strategy="afterInteractive"
+          />
+        )}
+
         {/* Background container */}
         <div className="fixed inset-0 z-[-1]">
           <PageBackground />
