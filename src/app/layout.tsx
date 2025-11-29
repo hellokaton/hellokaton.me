@@ -119,8 +119,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const rybbitSiteId = process.env.NEXT_PUBLIC_RYBBIT_SITE_ID;
-  const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST || "https://app.rybbit.io";
+  const rybbitSiteId = process.env.PUBLIC_RYBBIT_SITE_ID;
+  const rybbitHost = process.env.PUBLIC_RYBBIT_HOST || "https://app.rybbit.io";
   const rybbitScriptSrc = `${rybbitHost}/api/script.js`;
 
   return (
